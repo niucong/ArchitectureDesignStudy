@@ -30,6 +30,8 @@ public interface DiariesContract {
         boolean isActive();  // 判断Fragment是否已经添加到了Activity中
 
         void setListAdapter(DiariesAdapter mListAdapter); // 设置适配器
+
+        void showInputDialog(Diary diary);
     }
 
     interface Presenter extends BasePresenter {// 日记列表主持人

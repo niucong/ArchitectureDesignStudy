@@ -1,5 +1,6 @@
 package com.niucong.architecture.main.list;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,6 +22,7 @@ public class DiariesAdapter extends RecyclerView.Adapter<DiaryHolder> { // 日�
 
     public void update(List<Diary> diaries) { // 更新日记数据
         mDiaries = diaries;
+        Log.d("Diaries", "DiariesAdapter " + diaries.size());
         notifyDataSetChanged(); // 通知Adapter更新
     }
 

@@ -1,5 +1,6 @@
 package com.niucong.architecture.main;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,11 +9,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.niucong.architecture.EnApplication;
 import com.niucong.architecture.R;
+import com.niucong.architecture.data.DiariesRepository;
 import com.niucong.architecture.main.list.DiariesAdapter;
+import com.niucong.architecture.model.Diary;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -92,6 +98,25 @@ public class DiariesFragment extends Fragment implements DiariesContract.View { 
     }
 
     @Override
+    public void showInputDialog(final Diary data) {
+        final EditText editText = new EditText(getContext()); // 创建输入框
+        editText.setText(data.getDescription()); // 设置输入框默认文字为日志详情信息
+
+        new AlertDialog.Builder(getContext()).setTitle(data.getTitle())
+                .setView(editText)
+                .setPositiveButton(EnApplication.get().getString(R.string.ok),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) { // 确认按钮点击监听
+                                data.setDescription(editText.getText().toString()); // 修改日记信息为输入框信息
+                                DiariesRepository.getInstance().update(data); // 更新日记数据
+                                mPresenter.start();
+                            }
+                        })
+                .setNegativeButton(EnApplication.get().getString(R.string.cancel), null).show(); // 弹出对话框
+    }
+
+    @Override
     public void showSuccess() {
         showMessage(getString(R.string.success)); // 弹出成功提示信息
     }
@@ -107,7 +132,7 @@ public class DiariesFragment extends Fragment implements DiariesContract.View { 
 
     @Override
     public boolean isActive() {
-        return false;
+        return isAdded();
     }
 
     @Override

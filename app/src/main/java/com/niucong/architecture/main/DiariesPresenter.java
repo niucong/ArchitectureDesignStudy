@@ -1,6 +1,7 @@
 package com.niucong.architecture.main;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 
 import com.niucong.architecture.data.DiariesRepository;
@@ -22,7 +23,7 @@ import androidx.annotation.NonNull;
  */
 public class DiariesPresenter implements DiariesContract.Presenter {
 
-    private final DiariesRepository mDiariesRepository; // 数据仓库
+    public final DiariesRepository mDiariesRepository; // 数据仓库
     private DiariesContract.View mView;// 日记列表视图
     private DiariesAdapter mListAdapter; // 日记列表适配器
 
@@ -34,6 +35,7 @@ public class DiariesPresenter implements DiariesContract.Presenter {
     @Override
     public void start() {
         initAdapter();
+        Log.d("Diaries", "DiariesPresenter start");
         loadDiaries();
     }
 
@@ -44,12 +46,14 @@ public class DiariesPresenter implements DiariesContract.Presenter {
 
     @Override
     public void loadDiaries() {
+        Log.d("Diaries", "DiariesPresenter loadDiaries");
         mDiariesRepository.getAll(new DataCallback<List<Diary>>() { // 通过数据仓库获取数据
             @Override
             public void onSuccess(List<Diary> diaryList) {
                 if (!mView.isActive()) { // 视图未被添加则返回
                     return;
                 }
+                Log.d("Diaries", "DiariesPresenter " + diaryList.size());
                 updateDiaries(diaryList); // 数据获取成功，处理数据
             }
 
@@ -70,7 +74,8 @@ public class DiariesPresenter implements DiariesContract.Presenter {
 
     @Override
     public void updateDiary(@NonNull Diary diary) {
-        mView.gotoUpdateDiary(diary.getId()); // 跳转更新日记
+//        mView.gotoUpdateDiary(diary.getId()); // 跳转更新日记
+        mView.showInputDialog(diary);
     }
 
     @Override
