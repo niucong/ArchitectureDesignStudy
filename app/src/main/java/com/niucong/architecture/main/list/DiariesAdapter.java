@@ -1,11 +1,11 @@
-package com.niucong.architecture.main;
+package com.niucong.architecture.main.list;
 
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.niucong.architecture.main.holder.DiaryHolder;
 import com.niucong.architecture.model.Diary;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,12 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class DiariesAdapter extends RecyclerView.Adapter<DiaryHolder> { // 日记列表适配器
 
-    private List<Diary> mDiaries; // 日记数据
+    private List<Diary> mDiaries = new ArrayList<>(); // 日记数据
     private OnLongClickListener<Diary> mOnLongClickListener; // 长按监听
-
-    public DiariesAdapter(List<Diary> diaries) {
-        mDiaries = diaries; // 传入日记数据
-    }
 
     public void update(List<Diary> diaries) { // 更新日记数据
         mDiaries = diaries;

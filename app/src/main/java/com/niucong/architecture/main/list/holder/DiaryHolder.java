@@ -1,4 +1,4 @@
-package com.niucong.architecture.main.holder;
+package com.niucong.architecture.main.list.holder;
 
 import android.view.View;
 import android.view.ViewGroup;

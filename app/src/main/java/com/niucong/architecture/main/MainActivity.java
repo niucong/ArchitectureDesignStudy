@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             // 将日记Fragment添加到Activity显示
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), diariesFragment, R.id.content);
         }
+        diariesFragment.setPresenter(new DiariesPresenter(diariesFragment));// 传入Presenter实例
     }
 
     private DiariesFragment getDiariesFragment() {
