@@ -3,6 +3,7 @@ package com.niucong.architecture.main.list;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.niucong.architecture.main.list.holder.DiaryHolder;
 import com.niucong.architecture.model.Diary;
 
 import java.util.ArrayList;
