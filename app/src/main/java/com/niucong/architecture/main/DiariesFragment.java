@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.niucong.architecture.EnApplication;
 import com.niucong.architecture.R;
 import com.niucong.architecture.data.DiariesRepository;
+import com.niucong.architecture.edit.DiaryEditActivity;
+import com.niucong.architecture.edit.DiaryEditFragment;
 import com.niucong.architecture.main.list.DiariesAdapter;
 import com.niucong.architecture.model.Diary;
 
@@ -53,7 +55,7 @@ public class DiariesFragment extends Fragment implements DiariesContract.View { 
     @Override
     public void onDestroy() {
         super.onDestroy();// 调用父类的onDestroy方法
-        mPresenter.destory();
+        mPresenter.destroy();
     }
 
     @Override
@@ -86,15 +88,15 @@ public class DiariesFragment extends Fragment implements DiariesContract.View { 
 
     @Override
     public void gotoWriteDiary() {
-//        Intent intent = new Intent(getContext(), DiaryEditActivity.class); // 构造跳转页面的intent
-//        startActivity(intent); // 根据intent跳转
+        Intent intent = new Intent(getContext(), DiaryEditActivity.class); // 构造跳转页面的intent
+        startActivity(intent); // 根据intent跳转
     }
 
     @Override
     public void gotoUpdateDiary(String diaryId) {
-//        Intent intent = new Intent(getContext(), DiaryEditActivity.class); // 构造跳转页面的intent
-//        intent.putExtra(DiaryEditFragment.DIARY_ID, diaryId); // 设置跳转携带信息
-//        getContext().startActivity(intent); // 根据intent跳转
+        Intent intent = new Intent(getContext(), DiaryEditActivity.class); // 构造跳转页面的intent
+        intent.putExtra(DiaryEditFragment.DIARY_ID, diaryId); // 设置跳转携带信息
+        getContext().startActivity(intent); // 根据intent跳转
     }
 
     @Override

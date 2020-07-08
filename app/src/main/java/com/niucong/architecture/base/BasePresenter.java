@@ -12,6 +12,6 @@ public interface BasePresenter {// Presenter基类
 
     void start();// Presenter生命周期开始
 
-    void destory();// Presenter生命周期结束
+    void destroy();// Presenter生命周期结束
 
 }
